@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "849768845517",
+    "firebase_url": "https://stockmanager-210d4-default-rtdb.firebaseio.com",
+    "project_id": "stockmanager-210d4",
+    "storage_bucket": "stockmanager-210d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849768845517:android:0e3f5b14381e3a125d5984",
+        "android_client_info": {
+          "package_name": "com.india.stockmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849768845517-bkv13jfk1pk983929chnu4nmi9m7j567.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcjbJ8sD9WGpNNMGLMZIVBL3KNhFGyPk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849768845517-bkv13jfk1pk983929chnu4nmi9m7j567.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
