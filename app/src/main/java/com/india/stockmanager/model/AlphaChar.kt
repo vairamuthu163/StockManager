@@ -3,13 +3,13 @@ package com.india.stockmanager.model
 import android.net.Uri
 
 class AlphaChar {
-    var iconsChar: Uri?
-    var alphaChar:String  = "null"
-    var alphaCount:String  = "null"
+    var imageURI: String
+    var title:String  = "null"
+    var count:String  = "null"
 
-    constructor(iconsChar: Uri?, alphaChar: String, alphaCount: String){
-        this.iconsChar = iconsChar
-        this.alphaChar = alphaChar
-        this.alphaCount = alphaCount
+    constructor(iconsChar: String, alphaChar: String, alphaCount: String){
+        this.imageURI = iconsChar
+        this.title = alphaChar
+        this.count= alphaCount
     }
 }

@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.india.stockmanager.EditValue
 import com.india.stockmanager.R
 import com.india.stockmanager.model.AlphaChar
@@ -29,10 +30,10 @@ class AlphaAdaptors(var context: Context, var arrayList: ArrayList<AlphaChar>) :
 
         val alphaChar: AlphaChar = arrayList.get(position)
 
-        holder.icons.setImageURI(alphaChar.iconsChar)
-        holder.titles.text = alphaChar.alphaChar
-        holder.titlescount.text = alphaChar.alphaCount
 
+        holder.titles.text = alphaChar.title
+        holder.titlescount.text = alphaChar.count
+        Glide.with(context).load(alphaChar.imageURI).into(holder.icons)
         holder.icons.setOnClickListener {
             val intent =Intent(context, EditValue::class.java).apply {
                 setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

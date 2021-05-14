@@ -1,5 +1,6 @@
 package com.india.stockmanager
 
+
 import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Bitmap
@@ -37,44 +38,48 @@ class AddStock : AppCompatActivity() {
 
         val uploadImage: ImageView = findViewById(R.id.uploadImageView)
         uploadImage.setOnClickListener {
-            Toast.makeText(applicationContext,"Clicked on image", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Clicked on image", Toast.LENGTH_SHORT).show()
         }
         add.setOnClickListener {
             val tit:String = title.text.toString()
             val count:String = txtCount.text.toString()
-            mainactivity.addDatainList(ur,tit,count);
+            if(ur==null){
+                val resourceURI =
+                    Uri.parse("android.resource://" + this.packageName + "/" + R.drawable.letter_a)
+                ur=resourceURI
+            }
            // Toast.makeText(applicationContext,"Add Sucess", Toast.LENGTH_SHORT).show()
-            var fileRef: StorageReference = storageRef.child(tit+"."+getFileExtensionv(ur))
+            var fileRef: StorageReference = storageRef.child(tit + "." + getFileExtensionv(ur))
             ur?.let { it1 ->
                 fileRef.putFile(it1).addOnSuccessListener {
                     fileRef.downloadUrl.addOnSuccessListener {
                         val temp:String = it.toString()
-                        val model = Model(tit,count,temp)
+                        val model = Model(tit, count, temp)
                         myRef.child(tit).setValue(model).addOnSuccessListener {
-                            Toast.makeText(applicationContext,"Add Sucess", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Add Sucess", Toast.LENGTH_SHORT).show()
                         }.addOnFailureListener {
-                            Toast.makeText(applicationContext,it.toString(), Toast.LENGTH_LONG).show()
+                            Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
                         }
 
                     }
 
                 }.addOnFailureListener {
 
-                    Toast.makeText(applicationContext,it.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
                 }.addOnProgressListener {
-                    Toast.makeText(applicationContext,"onGoing", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "onGoing", Toast.LENGTH_SHORT).show()
                 }
             }
             finish()
         }
         capture.setOnClickListener {
             var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent,123)
+            startActivityForResult(intent, 123)
         }
         gallery.setOnClickListener{
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
-            startActivityForResult(intent,456)
+            startActivityForResult(intent, 456)
         }
     }
     private fun getFileExtensionv(ur: Uri?):String? {
@@ -92,7 +97,12 @@ class AddStock : AppCompatActivity() {
             var bitmap:Bitmap = data?.extras?.get("data") as Bitmap
             val bytes = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-            val path = MediaStore.Images.Media.insertImage(applicationContext.contentResolver, bitmap, "Title", null)
+            val path = MediaStore.Images.Media.insertImage(
+                applicationContext.contentResolver,
+                bitmap,
+                "Title",
+                null
+            )
             ur = Uri.parse(path.toString())
             uploadImage.setImageBitmap(bitmap)
         } else if(requestCode == 456){
