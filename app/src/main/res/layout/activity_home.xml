@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".HomeActivity">
+
+    <Button
+        android:id="@+id/ownerBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Owner"
+        android:padding="10dp"
+        android:textSize="19dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:background="@drawable/mybutton"
+        />
+    <Button
+        android:id="@+id/collaboratorBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ownerBtn"
+        android:padding="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/mybutton"
+        android:text="Collaborator"
+        android:textSize="19dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        />
+</RelativeLayout>

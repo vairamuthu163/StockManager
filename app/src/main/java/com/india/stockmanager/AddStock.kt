@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -19,10 +20,11 @@ import java.io.ByteArrayOutputStream
 
 
 class AddStock : AppCompatActivity() {
+    var auth: FirebaseAuth? = FirebaseAuth.getInstance()
     val mainactivity = MainActivity()
     var ur: Uri?=null
     var database = FirebaseDatabase.getInstance()
-    var myRef = database.getReference().child("data")
+    var myRef = database.getReference().child("data").child(auth!!.currentUser.uid)
     var storageRef: StorageReference = FirebaseStorage.getInstance().getReference()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

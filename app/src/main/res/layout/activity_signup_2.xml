@@ -5,13 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:layout_margin="10dp"
     tools:context=".SignupActivity_2">
 
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textview_bg"
+        android:fontFamily="sans-serif-light"
+        android:padding="10dp"
+        android:textColor="#004d00"
+        android:text="Note: if you need a collaborator you just share this user name and password to everyone as you want. else don't share this username to anyone."
+        android:textSize="15dp" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signUpUsername_2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/note"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -21,7 +34,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signUpPassword_2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="password_toggle"
@@ -38,7 +51,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signUpConfirmPassword_2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="password_toggle"

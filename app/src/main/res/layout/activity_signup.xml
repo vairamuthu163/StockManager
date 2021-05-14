@@ -5,69 +5,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".signupActivity">
+    android:layout_margin="10dp"
+    tools:context=".SignupActivity">
+
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signUpUsername_1"
+        android:id="@+id/signUpEmail_1l"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-      >
+        >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signUpEmail_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="UserName *" />
+            android:hint="Email"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signUpEmail_1"
+        android:id="@+id/signUpPassword_1l"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signUpUsername_1"
-         >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email *" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signUpPassword_1"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/signUpEmail_1"
+        android:layout_below="@+id/signUpEmail_1l"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signUpPassword_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password *"
-            android:password="true" />
+            android:hint="Password"
+            android:password="true"
+              />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signUpConfirmPassword_1"
+        android:id="@+id/signUpConfirmPassword_1l"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signUpPassword_1"
+        android:layout_below="@+id/signUpPassword_1l"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signUpConfirmPassword_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password *"
-            android:password="true" />
+            android:hint="Confirm Password"
+            android:password="true"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/signUpBtn_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signUpConfirmPassword_1"
-        android:text="Sign up" />
+        android:layout_below="@+id/signUpConfirmPassword_1l"
+        android:text="Next" />
 </RelativeLayout>
