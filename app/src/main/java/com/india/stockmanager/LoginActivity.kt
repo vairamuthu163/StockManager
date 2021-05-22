@@ -84,7 +84,9 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener {
                         if(it.isSuccessful)
                         {
-                            val intent = Intent(applicationContext,MainActivity::class.java)
+                            val intent = Intent(applicationContext,MainActivity::class.java).apply {
+                                putExtra("passmain",loginPassword.text.toString().trim())
+                            }
                             startActivity(intent)
                             finish()
                         }

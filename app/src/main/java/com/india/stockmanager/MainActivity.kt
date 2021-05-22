@@ -83,7 +83,17 @@ class MainActivity : AppCompatActivity() {
 
                     alphaAdaptors = AlphaAdaptors(applicationContext, arrayList!!,object :AlphaAdaptors.RecyclerViewClickListener{
                         override fun OnLongClickListener(position: Int) {
-                            Toast.makeText(applicationContext,"OnLongclick Adaptor",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext,"OnLongClick Adaptor",Toast.LENGTH_SHORT).show()
+                            var builder = AlertDialog.Builder(applicationContext)
+                            builder.setTitle("Are you sure!")
+                            builder.setMessage("Do you want to Delete the stock?")
+                            builder.setPositiveButton("Yes", { dialogInterface: DialogInterface, i: Int -> removevk(position)})
+                            builder.setNegativeButton("No", { dialogInterface: DialogInterface, i: Int -> })
+                            builder.show()
+                        }
+                        private fun removevk(pos:Int) {
+                            root.child(arrayList!!.get(pos).title)
+                            root.removeValue()
                         }
                     })
                     recyclerView?.adapter = alphaAdaptors
@@ -151,7 +161,7 @@ class MainActivity : AppCompatActivity() {
             alphaAdaptors = AlphaAdaptors(applicationContext, arrayList!!,object :AlphaAdaptors.RecyclerViewClickListener{
 
                 override fun OnLongClickListener(position: Int) {
-                    Toast.makeText(applicationContext,"OnLongclick Adaptor",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"Need Owner Acces to delete Stock",Toast.LENGTH_SHORT).show()
                 }
 
             })
@@ -201,7 +211,9 @@ class MainActivity : AppCompatActivity() {
                     var userName:String = uNameStr
                     var password:String = uPassStr
                     val intent = Intent(applicationContext, SettingActivity::class.java).apply {
+                        val passmain = intent.getStringExtra("passmain")!!
                         putExtra("userName",userName)
+                        putExtra("passmain",passmain)
                         putExtra("password",password)
                     }
                     startActivity(intent)

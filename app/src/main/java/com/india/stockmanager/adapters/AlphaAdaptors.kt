@@ -58,7 +58,7 @@ class AlphaAdaptors : RecyclerView.Adapter<AlphaAdaptors.ItemHolder> {
                         holder.icons.setImageBitmap(resource);
                         bitmap= resource;
                         uri = getImageUri(context.getApplicationContext(), bitmap)
-                    /*  holder.itemView.setOnClickListener {
+                        holder.itemView.setOnClickListener {
                             val intent =Intent(context, EditValue::class.java).apply {
                                 putExtra("Title",alphaChar.title)
                                 putExtra("ImageURI",uri.toString())
@@ -68,7 +68,7 @@ class AlphaAdaptors : RecyclerView.Adapter<AlphaAdaptors.ItemHolder> {
                             }
                             context.startActivity(intent)
 
-                        }*/
+                        }
 
                     }
                 })
@@ -90,10 +90,13 @@ class AlphaAdaptors : RecyclerView.Adapter<AlphaAdaptors.ItemHolder> {
         var titlescount = itemView.findViewById<TextView>(R.id.textView)
         constructor(itemView: View,listener: RecyclerViewClickListener):super(itemView)
         {
-
-           itemView.setOnClickListener{
+            itemView.setOnLongClickListener {
                 listener.OnLongClickListener(adapterPosition)
+                return@setOnLongClickListener true
             }
+           /*itemView.setOnloClickListener{
+                listener.OnLongClickListener(adapterPosition)
+            }*/
         }
 
 

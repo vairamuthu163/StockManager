@@ -133,7 +133,9 @@ class SignupActivity : AppCompatActivity() {
                                 var model = UserDetails(loginEmailName.text.toString().trim(),"#fghs#hsd&c%s")
                                 currentUserDb?.setValue(model)
                                 Toast.makeText(applicationContext,"Registration Success",Toast.LENGTH_SHORT).show()
-                                val intent = Intent(applicationContext,MainActivity::class.java)
+                                val intent = Intent(applicationContext,MainActivity::class.java).apply {
+                                    putExtra("passmain",signUpPassword1.text.toString().trim())
+                                }
                                 startActivity(intent)
                                 finish()
                             }
