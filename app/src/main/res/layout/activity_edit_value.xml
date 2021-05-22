@@ -14,6 +14,7 @@
         <TableRow>
 
             <TextView
+                android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_span="2"
@@ -74,42 +75,58 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
+                android:id="@+id/Numberl"
                 android:layout_height="wrap_content"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                android:layout_marginTop="10dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_span="2">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:id="@+id/Number"
                     android:layout_height="wrap_content"
+                    android:padding="18dp"
                     android:hint="Number" />
 
             </com.google.android.material.textfield.TextInputLayout>
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="10dp"
+            >
 
             <Button
-                android:id="@+id/btnicrease"
+                android:id="@+id/btnIcrease"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
+                android:background="@drawable/mybutton"
                 android:text="Increase" />
 
             <Button
-                android:id="@+id/btndecrease"
+                android:id="@+id/btnDecrease"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
+                android:background="@drawable/mybutton"
                 android:text="decrease" />
         </TableRow>
         <TableRow
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginTop="10dp"
             >
             <Button
-                android:id="@+id/updateCountBtn"
-                android:text="update"
+                android:id="@+id/CancelBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
                 android:layout_span="2"
-                />
+                android:background="@drawable/mybutton"
+                android:text="Delete stock" />
         </TableRow>
+
     </TableLayout>
 </androidx.cardview.widget.CardView>

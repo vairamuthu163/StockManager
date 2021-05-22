@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingActivity">
+    <include
+        layout="@layout/toolbar_layout"
+        android:id="@+id/toolBar"
+        />
+    <TextView
+        android:layout_below="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Collaborator Settings"
+        android:id="@+id/collaboratorSettingTxt"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:background="@drawable/settingtxt"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/changePassTxt"
+        android:layout_below="@+id/collaboratorSettingTxt"
+        android:text="Change Login Password"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:background="@drawable/settingtxt"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteAccTxt"
+        android:layout_below="@+id/changePassTxt"
+        android:text="Delete Account"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:background="@drawable/settingtxt"
+        />
+
+</RelativeLayout>

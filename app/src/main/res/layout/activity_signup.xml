@@ -5,21 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:layout_margin="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
     tools:context=".SignupActivity">
 
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signUpEmail_1l"
+        android:id="@+id/loginEmailNamel"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginEmailName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:hint="UserName" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signUpEmail_1l"
+        android:layout_below="@+id/loginEmailNamel"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_marginTop="6dp"
+        android:layout_height="wrap_content"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopStart="20dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/signUpEmail_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="18dp"
             android:hint="Email"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -30,12 +56,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signUpEmail_1l"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopStart="20dp"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/signUpPassword_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="18dp"
             android:hint="Password"
             android:password="true"
               />
@@ -47,6 +78,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signUpPassword_1l"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopStart="20dp"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -54,14 +89,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm Password"
+            android:padding="18dp"
             android:password="true"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:layout_marginTop="10dp"
         android:id="@+id/signUpBtn_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signUpConfirmPassword_1l"
-        android:text="Next" />
+        android:text="Next"
+        android:textSize="16dp"
+        android:background="@drawable/mybutton"
+        />
+    <ProgressBar
+        android:layout_marginTop="10dp"
+        android:id="@+id/progressNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signUpBtn_1"
+        />
 </RelativeLayout>

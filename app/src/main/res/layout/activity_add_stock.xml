@@ -9,13 +9,12 @@
 
     <ImageView
         android:id="@+id/uploadImageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="150dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         android:src="@drawable/ic_baseline_add_a_photo_24"
         />
 
@@ -35,62 +34,73 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginEnd="6dp"
                 android:hint="Title"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/stockTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                   android:padding="18dp"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:hint="Count"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/stockCount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
+                    android:padding="18dp"
                     />
             </com.google.android.material.textfield.TextInputLayout>
         </TableRow>
 
-        <TableRow>
-            <Button
-                android:id="@+id/captureBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="capture"
-                android:layout_margin="4dp"/>
-
-            <Button
-                android:id="@+id/galleryBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="gallery"
-                android:layout_margin="4dp"/>
-        </TableRow>
-        <TableRow>
-
+        <TableRow
+            android:layout_marginTop="17dp"
+            >
             <Button
                 android:id="@+id/add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Add"
+                android:textSize="18dp"
                 android:layout_margin="4dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/mybutton"
                 android:layout_span="2"/>
-
-
         </TableRow>
-
+        <TableRow
+            android:layout_margin="18dp"
+            >
+            <ProgressBar
+                android:id="@+id/addStockProgress"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_centerHorizontal="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </TableRow>
     </TableLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

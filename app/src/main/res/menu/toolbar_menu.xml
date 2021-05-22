@@ -6,16 +6,13 @@
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_baseline_search_24"
         />
+    <item android:title="Settings"
+        android:id="@+id/item2"
+        app:showAsAction="never"
+        />
     <item android:title="logout"
         android:id="@+id/item1"
         app:showAsAction="never"
         />
-    <item android:title="Item2"
-        android:id="@+id/item2"
-        app:showAsAction="never"
-        />
-    <item android:title="Item3"
-        android:id="@+id/item3"
-        app:showAsAction="never"
-        />
+
 </menu>

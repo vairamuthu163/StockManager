@@ -7,10 +7,14 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.LayoutInflater
+import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -22,41 +26,68 @@ import java.io.ByteArrayOutputStream
 
 class AddStock : AppCompatActivity() {
     var auth: FirebaseAuth? = FirebaseAuth.getInstance()
-    val mainactivity = MainActivity()
+   // val mainactivity = MainActivity()
     var ur: Uri?=null
     var database = FirebaseDatabase.getInstance()
-    var myRef = database.getReference().child("data").child(auth!!.currentUser.uid)
+
+
     var storageRef: StorageReference = FirebaseStorage.getInstance().getReference()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_stock)
-        val capture: Button = findViewById(R.id.captureBtn)
-        val gallery: Button = findViewById(R.id.galleryBtn)
+        val UserName = intent.getStringExtra("UserName")!!
+        var myRef = database.getReference().child("data").child(UserName!!)
+
+
         val add: Button = findViewById(R.id.add)
         val title: TextInputEditText = findViewById(R.id.stockTitle)
         val txtCount: TextInputEditText = findViewById(R.id.stockCount)
-
         val uploadImage: ImageView = findViewById(R.id.uploadImageView)
+
+        var progress:ProgressBar = findViewById(R.id.addStockProgress)
+        progress.visibility = View.INVISIBLE
         uploadImage.setOnClickListener {
-            Toast.makeText(applicationContext, "Clicked on image", Toast.LENGTH_SHORT).show()
+
+            val inflater:View = layoutInflater.inflate(R.layout.custom_layoutdialog,null)
+            val imageClick = AlertDialog.Builder(this).setView(inflater)
+           val mAlertDialog = imageClick.show()
+           val btnCam:Button =  inflater.findViewById(R.id.btnCamera)
+           val btnGal:Button = inflater.findViewById(R.id.btnGallery)
+            btnCam.setOnClickListener {
+                var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(intent, 123)
+                mAlertDialog.dismiss()
+            }
+           btnGal.setOnClickListener {
+               val intent = Intent(Intent.ACTION_PICK)
+               intent.type = "image/*"
+               startActivityForResult(intent, 456)
+               mAlertDialog.dismiss()
+
+           }
         }
         add.setOnClickListener {
-            val tit:String = title.text.toString()
-            val count:String = txtCount.text.toString()
+            progress.visibility = View.VISIBLE
+            val tit:String = title.text.toString().trim()
+            val count:String = txtCount.text.toString().trim()
             if(ur==null){
                 val resourceURI =
                     Uri.parse("android.resource://" + this.packageName + "/" + R.drawable.letter_a)
                 ur=resourceURI
             }
+
            // Toast.makeText(applicationContext,"Add Sucess", Toast.LENGTH_SHORT).show()
             var fileRef: StorageReference = storageRef.child(tit + "." + getFileExtensionv(ur))
             ur?.let { it1 ->
                 fileRef.putFile(it1).addOnSuccessListener {
                     fileRef.downloadUrl.addOnSuccessListener {
                         val temp:String = it.toString()
-                        val model = Model(tit, count, temp)
+                        val model = Model(tit, count, temp,UserName)
                         myRef.child(tit).setValue(model).addOnSuccessListener {
+                            progress.visibility = View.INVISIBLE
                             Toast.makeText(applicationContext, "Add Sucess", Toast.LENGTH_SHORT).show()
+                            finish()
                         }.addOnFailureListener {
                             Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
                         }
@@ -64,22 +95,13 @@ class AddStock : AppCompatActivity() {
                     }
 
                 }.addOnFailureListener {
-
                     Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
+
                 }.addOnProgressListener {
-                    Toast.makeText(applicationContext, "onGoing", Toast.LENGTH_SHORT).show()
+                    progress.visibility = View.VISIBLE
+                   // Toast.makeText(applicationContext, "onGoing", Toast.LENGTH_SHORT).show()
                 }
             }
-            finish()
-        }
-        capture.setOnClickListener {
-            var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, 123)
-        }
-        gallery.setOnClickListener{
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            startActivityForResult(intent, 456)
         }
     }
     private fun getFileExtensionv(ur: Uri?):String? {

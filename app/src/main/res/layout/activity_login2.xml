@@ -20,7 +20,7 @@
             android:id="@+id/loginUserName2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="UserName *" />
+            android:hint="UserName" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:password="true"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,5 +48,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginPasswordl2"
         android:text="Sign in"
+        />
+    <ProgressBar
+        android:layout_marginTop="8dp"
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login2"
         />
 </RelativeLayout>

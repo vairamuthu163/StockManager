@@ -5,8 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center"
     tools:context=".LoginActivity">
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginUserNamel"
@@ -14,13 +17,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:startIconDrawable="@drawable/ic_baseline_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email *" />
+            android:padding="18dp"
+            android:drawablePadding="10dp"
+            android:hint="Email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -29,40 +39,65 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginUserNamel"
+        android:layout_marginTop="6dp"
         app:endIconMode="password_toggle"
-        app:layout_constraintStart_toStartOf="parent">
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password *"
-            android:password="true"
-            />
+            android:drawablePadding="10dp"
+            android:padding="18dp"
+            android:hint="Password"
+            android:password="true" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/login"
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/forgotPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginPasswordl"
-        android:text="Sign in" />
+        android:text="Forgot Password?"
+        android:gravity="end"
+        android:textSize="18dp"
+        />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/forgotPass"
+        android:text="Sign in"
+        android:textSize="17dp"
+        android:background="@drawable/mybutton"
+        />
 
     <TextView
         android:id="@+id/newUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login"
-        android:text="New User click here"
-
+        android:text="New User Signup here"
+        android:textSize="18dp"
+        android:textColor="#00BCD4"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif"
         />
 
     <ProgressBar
+        android:layout_marginTop="10dp"
         android:id="@+id/progressBar3"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_below="@+id/newUser"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
