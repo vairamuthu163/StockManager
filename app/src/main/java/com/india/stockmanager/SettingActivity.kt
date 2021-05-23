@@ -4,10 +4,13 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -39,19 +42,37 @@ class SettingActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext, ChangeOwnerPassword::class.java))
         }
         deleteAccTxt.setOnClickListener {
-            var builder = AlertDialog.Builder(applicationContext)
+            /*var builder = AlertDialog.Builder(this)
             builder.setTitle("Are you sure!")
             builder.setMessage("Do you want to Delete your account? this can't be undone.")
             builder.setPositiveButton("Yes", { dialogInterface: DialogInterface, i: Int -> deleteacc() })
             builder.setNegativeButton("No", { dialogInterface: DialogInterface, i: Int -> })
-            builder.show()
+            builder.show()*/
+            val inflater:View = layoutInflater.inflate(R.layout.custom_dialog_delete,null)
+            val imageClick = AlertDialog.Builder(this).setView(inflater)
+            val mAlertDialog = imageClick.show()
+
+            val deletePassl:TextInputLayout = inflater.findViewById(R.id.deletePassl)
+            val deletePass:TextInputEditText = inflater.findViewById(R.id.deletePass)
+
+            val btnCancel:Button = inflater.findViewById(R.id.btnCancel)
+            val btnDelete:Button = inflater.findViewById(R.id.btnDelete)
+
+            btnDelete.setOnClickListener {
+                deleteacc(deletePass.text.toString().trim())
+                mAlertDialog.dismiss()
+            }
+            btnCancel.setOnClickListener {
+                mAlertDialog.dismiss()
+            }
+
         }
     }
 
-    private fun deleteacc() {
+    private fun deleteacc(deletePass:String) {
         var auth: FirebaseUser = FirebaseAuth.getInstance().currentUser
         var authCred: AuthCredential =
-                EmailAuthProvider.getCredential(auth.email, intent.getStringExtra("passmain")!!)
+                EmailAuthProvider.getCredential(auth.email, deletePass)
         auth.reauthenticate(authCred).addOnCompleteListener {
             if (it.isSuccessful) {
                 auth.delete().addOnCompleteListener {

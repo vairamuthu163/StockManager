@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -83,17 +84,16 @@ class MainActivity : AppCompatActivity() {
 
                     alphaAdaptors = AlphaAdaptors(applicationContext, arrayList!!,object :AlphaAdaptors.RecyclerViewClickListener{
                         override fun OnLongClickListener(position: Int) {
-                            Toast.makeText(applicationContext,"OnLongClick Adaptor",Toast.LENGTH_SHORT).show()
-                            var builder = AlertDialog.Builder(applicationContext)
+                            Toast.makeText(applicationContext,"OnLongClick Adaptor"+position,Toast.LENGTH_SHORT).show()
+                           var builder = AlertDialog.Builder(this@MainActivity)
                             builder.setTitle("Are you sure!")
                             builder.setMessage("Do you want to Delete the stock?")
-                            builder.setPositiveButton("Yes", { dialogInterface: DialogInterface, i: Int -> removevk(position)})
+                            builder.setPositiveButton("Yes", { dialogInterface: DialogInterface, i: Int ->  removevk(position)})
                             builder.setNegativeButton("No", { dialogInterface: DialogInterface, i: Int -> })
                             builder.show()
                         }
                         private fun removevk(pos:Int) {
-                            root.child(arrayList!!.get(pos).title)
-                            root.removeValue()
+                            root.child(arrayList!!.get(pos).title).removeValue()
                         }
                     })
                     recyclerView?.adapter = alphaAdaptors
@@ -195,8 +195,43 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
+        val menuItem = menu!!.findItem(R.id.searchBar)
+            val searchView = menuItem!!.actionView as androidx.appcompat.widget.SearchView
+            searchView.setOnQueryTextListener(object :androidx.appcompat.widget.SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    searchRecord(query)
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    searchRecord(newText)
+                    return true
+                }
+
+            })
+
         return super.onCreateOptionsMenu(menu)
     }
+
+    private fun searchRecord(query: String?) {
+        var recordList:ArrayList<AlphaChar> = ArrayList()
+       // var charSequence:CharSequence = query.toString()
+        for (alpha: AlphaChar in arrayListfinal) {
+                if(alpha.title.contains(query.toString(),true))
+                {
+                    recordList.add(alpha)
+                }
+        }
+
+        val adaptor:AlphaAdaptors = AlphaAdaptors(applicationContext,recordList!!,object :AlphaAdaptors.RecyclerViewClickListener{
+            override fun OnLongClickListener(position: Int) {
+
+            }
+        })
+        recyclerView?.adapter = adaptor
+
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
        // val snack = Snackbar.make(applicationContext,"This is a simple Snackbar",Snackbar.LENGTH_LONG)
         when(item.itemId) {
@@ -208,12 +243,11 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.item2 ->{
                 if(auth!!.currentUser!=null){
+
                     var userName:String = uNameStr
                     var password:String = uPassStr
                     val intent = Intent(applicationContext, SettingActivity::class.java).apply {
-                        val passmain = intent.getStringExtra("passmain")!!
                         putExtra("userName",userName)
-                        putExtra("passmain",passmain)
                         putExtra("password",password)
                     }
                     startActivity(intent)
@@ -224,7 +258,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
-            else -> Toast.makeText(applicationContext, "No item is clicked", Toast.LENGTH_SHORT).show()
+            else-> {
+                Toast.makeText(applicationContext, "No item is clicked", Toast.LENGTH_SHORT).show()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

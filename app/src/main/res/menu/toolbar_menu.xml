@@ -5,6 +5,7 @@
         android:id="@+id/searchBar"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_baseline_search_24"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         />
     <item android:title="Settings"
         android:id="@+id/item2"
