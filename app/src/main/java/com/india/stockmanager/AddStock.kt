@@ -36,7 +36,8 @@ class AddStock : AppCompatActivity() {
     var ur: Uri?=null
     var database = FirebaseDatabase.getInstance()
     lateinit var file: File
-
+    lateinit var bytedata:ByteArray
+    var vk:Int=0
     var storageRef: StorageReference = FirebaseStorage.getInstance().getReference()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,13 +56,13 @@ class AddStock : AppCompatActivity() {
         progress.visibility = View.INVISIBLE
         uploadImage.setOnClickListener {
 
-            val inflater:View = layoutInflater.inflate(R.layout.custom_layoutdialog,null)
+            val inflater:View = layoutInflater.inflate(R.layout.custom_layoutdialog, null)
             val imageClick = AlertDialog.Builder(this).setView(inflater)
            val mAlertDialog = imageClick.show()
            val btnCam:Button =  inflater.findViewById(R.id.btnCamera)
            val btnGal:Button = inflater.findViewById(R.id.btnGallery)
             btnCam.setOnClickListener {
-                var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                /*var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     file = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS + "/attachments")!!.path,
                             System.currentTimeMillis().toString() + ".jpg")
@@ -73,9 +74,9 @@ class AddStock : AppCompatActivity() {
                     }
                     takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     startActivityForResult(takePictureIntent, 123)
-                }
-
-
+                }*/
+                var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(intent, 123)
                 mAlertDialog.dismiss()
             }
            btnGal.setOnClickListener {
@@ -98,12 +99,12 @@ class AddStock : AppCompatActivity() {
 
            // Toast.makeText(applicationContext,"Add Sucess", Toast.LENGTH_SHORT).show()
             val fileName: String = SimpleDateFormat("yyyyMMddHHmm").format(Date())
-            var fileRef: StorageReference = storageRef.child(tit+fileName + "." + getFileExtensionv(ur))
-            ur?.let { it1 ->
-                fileRef.putFile(it1).addOnSuccessListener {
+            if(vk==2){
+                var fileRef: StorageReference = storageRef.child(tit + fileName + ".jpg")
+                fileRef.putBytes(bytedata).addOnSuccessListener {
                     fileRef.downloadUrl.addOnSuccessListener {
-                        val temp:String = it.toString()
-                        val model = Model(tit, count, temp,UserName)
+                        val temp: String = it.toString()
+                        val model = Model(tit, count, temp, UserName)
                         myRef.child(tit).setValue(model).addOnSuccessListener {
                             progress.visibility = View.INVISIBLE
                             Toast.makeText(applicationContext, "Add Sucess", Toast.LENGTH_SHORT).show()
@@ -111,15 +112,31 @@ class AddStock : AppCompatActivity() {
                         }.addOnFailureListener {
                             Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
                         }
+                    }
+                }.addOnFailureListener{
+                    Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
+                }
+
+            }
+            else {
+                var fileRef: StorageReference = storageRef.child(tit + fileName + "." + getFileExtensionv(ur))
+                ur?.let { it1 ->
+                    fileRef.putFile(it1).addOnSuccessListener {
+                        fileRef.downloadUrl.addOnSuccessListener {
+                            val temp: String = it.toString()
+                            val model = Model(tit, count, temp, UserName)
+                            myRef.child(tit).setValue(model).addOnSuccessListener {
+                                progress.visibility = View.INVISIBLE
+                                Toast.makeText(applicationContext, "Add Sucess", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }.addOnFailureListener {
+                                Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }.addOnFailureListener {
+                        Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
 
                     }
-
-                }.addOnFailureListener {
-                    Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
-
-                }.addOnProgressListener {
-                    progress.visibility = View.VISIBLE
-                   // Toast.makeText(applicationContext, "onGoing", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -137,8 +154,13 @@ class AddStock : AppCompatActivity() {
         if(requestCode == 123)
         {
             ur = Uri.parse(file.path)
-            Log.d("Vairamuthu",ur.toString())
-           /* var bitmap:Bitmap = data?.extras?.get("data") as Bitmap
+            Log.d("Vairamuthu", ur.toString())
+            var bitmap:Bitmap = data?.extras?.get("data") as Bitmap
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            bytedata = baos.toByteArray()
+            vk=2
+           /*
             val bytes = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
             val path = MediaStore.Images.Media.insertImage(
@@ -148,12 +170,12 @@ class AddStock : AppCompatActivity() {
                 null
             )
             ur = Uri.parse(path.toString())*/
-            uploadImage.setImageURI(ur)
+            uploadImage.setImageBitmap(bitmap)
         } else if(requestCode == 456){
 
             uploadImage.setImageURI(data?.data)
             ur=data?.data
-            Log.d("Vairamuthu",ur.toString())
+            Log.d("Vairamuthu", ur.toString())
         }
     }
 }
