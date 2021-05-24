@@ -5,9 +5,11 @@ import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.Button
@@ -16,12 +18,16 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class AddStock : AppCompatActivity() {
@@ -29,7 +35,7 @@ class AddStock : AppCompatActivity() {
    // val mainactivity = MainActivity()
     var ur: Uri?=null
     var database = FirebaseDatabase.getInstance()
-
+    lateinit var file: File
 
     var storageRef: StorageReference = FirebaseStorage.getInstance().getReference()
 
@@ -55,8 +61,21 @@ class AddStock : AppCompatActivity() {
            val btnCam:Button =  inflater.findViewById(R.id.btnCamera)
            val btnGal:Button = inflater.findViewById(R.id.btnGallery)
             btnCam.setOnClickListener {
-                var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(intent, 123)
+                var takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    file = File(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS + "/attachments")!!.path,
+                            System.currentTimeMillis().toString() + ".jpg")
+//            fileUri = Uri.fromFile(file)
+                    val fileUri = FileProvider.getUriForFile(this, this.applicationContext.packageName + ".provider", file!!)
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
+                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+                        takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                    }
+                    takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    startActivityForResult(takePictureIntent, 123)
+                }
+
+
                 mAlertDialog.dismiss()
             }
            btnGal.setOnClickListener {
@@ -78,7 +97,8 @@ class AddStock : AppCompatActivity() {
             }
 
            // Toast.makeText(applicationContext,"Add Sucess", Toast.LENGTH_SHORT).show()
-            var fileRef: StorageReference = storageRef.child(tit + "." + getFileExtensionv(ur))
+            val fileName: String = SimpleDateFormat("yyyyMMddHHmm").format(Date())
+            var fileRef: StorageReference = storageRef.child(tit+fileName + "." + getFileExtensionv(ur))
             ur?.let { it1 ->
                 fileRef.putFile(it1).addOnSuccessListener {
                     fileRef.downloadUrl.addOnSuccessListener {
@@ -116,7 +136,9 @@ class AddStock : AppCompatActivity() {
         val uploadImage: ImageView = findViewById(R.id.uploadImageView)
         if(requestCode == 123)
         {
-            var bitmap:Bitmap = data?.extras?.get("data") as Bitmap
+            ur = Uri.parse(file.path)
+            Log.d("Vairamuthu",ur.toString())
+           /* var bitmap:Bitmap = data?.extras?.get("data") as Bitmap
             val bytes = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
             val path = MediaStore.Images.Media.insertImage(
@@ -125,11 +147,13 @@ class AddStock : AppCompatActivity() {
                 "Title",
                 null
             )
-            ur = Uri.parse(path.toString())
-            uploadImage.setImageBitmap(bitmap)
+            ur = Uri.parse(path.toString())*/
+            uploadImage.setImageURI(ur)
         } else if(requestCode == 456){
+
             uploadImage.setImageURI(data?.data)
             ur=data?.data
+            Log.d("Vairamuthu",ur.toString())
         }
     }
 }

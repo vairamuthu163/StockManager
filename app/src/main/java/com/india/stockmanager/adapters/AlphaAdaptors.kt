@@ -50,7 +50,7 @@ class AlphaAdaptors : RecyclerView.Adapter<AlphaAdaptors.ItemHolder> {
         holder.titlescount.text = alphaChar.count
         lateinit var bitmap: Bitmap
         lateinit var uri: Uri
-        Glide.with(context).asBitmap()
+       /* Glide.with(context).asBitmap()
                 .load(alphaChar.imageURI)
                 .into(object : SimpleTarget<Bitmap?>() {
                     
@@ -71,9 +71,9 @@ class AlphaAdaptors : RecyclerView.Adapter<AlphaAdaptors.ItemHolder> {
                         }
 
                     }
-                })
+                })*/
 
-      //  Glide.with(context).load(alphaChar.imageURI).into(holder.icons)
+        Glide.with(context).load(alphaChar.imageURI).into(holder.icons)
 
     }
 
@@ -94,6 +94,10 @@ class AlphaAdaptors : RecyclerView.Adapter<AlphaAdaptors.ItemHolder> {
                 listener.OnLongClickListener(adapterPosition)
                 return@setOnLongClickListener true
             }
+            itemView.setOnClickListener {
+                listener.OnClick(adapterPosition)
+
+            }
            /*itemView.setOnloClickListener{
                 listener.OnLongClickListener(adapterPosition)
             }*/
@@ -103,5 +107,6 @@ class AlphaAdaptors : RecyclerView.Adapter<AlphaAdaptors.ItemHolder> {
     }
     public interface RecyclerViewClickListener {
         fun  OnLongClickListener(position: Int)
+        fun OnClick(position: Int)
     }
 }

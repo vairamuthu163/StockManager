@@ -69,7 +69,7 @@ class LoginActivity2 : AppCompatActivity() {
                 loginPasswordl2.error = "Please enter password"
                 return@setOnClickListener
             }
-            if(!loginPassword2.text.toString().trim().equals("#fghs#hsd&c%s")){
+            if(loginPassword2.text.toString().trim().equals("#fghs#hsd&c%s")){
                 Toast.makeText(applicationContext,"Password does not match!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
