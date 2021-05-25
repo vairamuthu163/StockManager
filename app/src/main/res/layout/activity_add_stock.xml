@@ -47,7 +47,6 @@
                     android:id="@+id/stockTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                   android:padding="18dp"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +65,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:padding="18dp"
                     />
             </com.google.android.material.textfield.TextInputLayout>
         </TableRow>
@@ -78,26 +76,21 @@
                 android:id="@+id/add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:text="Add"
-                android:textSize="18dp"
                 android:layout_margin="4dp"
                 android:layout_marginTop="35dp"
-                android:background="@drawable/mybutton"
                 android:layout_span="2"/>
         </TableRow>
         <TableRow
-            android:layout_margin="18dp"
+           android:layout_marginTop="10dp"
             >
+
             <ProgressBar
                 android:id="@+id/addStockProgress"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_span="2"
-                android:layout_centerHorizontal="true"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                />
         </TableRow>
     </TableLayout>
 

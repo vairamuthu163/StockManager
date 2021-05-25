@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="20dp"
-    android:background="@drawable/loadin_corner"
+    android:background="@drawable/corner_crop"
     >
 
     <ProgressBar

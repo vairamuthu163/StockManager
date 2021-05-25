@@ -8,6 +8,7 @@
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF">
     <TextView
+        android:gravity="center"
         android:id="@+id/dialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,10 +21,11 @@
 
     <TextView
         android:id="@+id/selectOption"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialogTitle"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="Enter the login Password to delete this account" />
 
     <TableLayout
@@ -33,25 +35,25 @@
         android:layout_below="@+id/selectOption"
         android:stretchColumns="*">
         <TableRow>
-             <com.google.android.material.textfield.TextInputLayout
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/deletePassl"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="6dp"
+                android:layout_span="2"
                 android:hint="Login Password"
-                 android:layout_span="2"
-                 android:id="@+id/deletePassl"
                 app:boxCornerRadiusBottomEnd="20dp"
-                app:boxCornerRadiusTopEnd="20dp"
                 app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
                 app:boxCornerRadiusTopStart="20dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                >
+                app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/deletePass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                   android:padding="18dp"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
         </TableRow>

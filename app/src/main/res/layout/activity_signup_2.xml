@@ -9,15 +9,18 @@
     tools:context=".SignupActivity_2">
 
     <TextView
+        app:drawableStartCompat="@drawable/ic_baseline_info"
         android:id="@+id/note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/textview_bg"
-        android:fontFamily="sans-serif-light"
+        android:drawableTint="#FAFAFA"
         android:padding="10dp"
-        android:textColor="#004d00"
         android:text="Note: if you need a collaborator you just share this user name and password to everyone as you want. else don't share this username to anyone."
-        android:textSize="15dp" />
+        android:textColor="@color/btnBack"
+        android:textSize="15dp"
+        />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signUpUsername_2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"

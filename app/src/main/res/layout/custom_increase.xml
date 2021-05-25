@@ -3,8 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:stretchColumns="*"
-    android:layout_margin="10dp"
+    android:background="@drawable/corner_crop"
+    android:padding="15dp"
     >
+    <TableRow>
+        <TextView
+            android:layout_span="2"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:text="Give your Quantity to Increase or Decrease your Stock Count"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            />
+    </TableRow>
 <TableRow>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -20,8 +31,7 @@
             android:id="@+id/editIncrease"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="18dp"
-            android:inputType="text" />
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 </TableRow>
 <TableRow
@@ -33,6 +43,7 @@ android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Increase"
+    android:background="@drawable/mybutton"
     android:layout_marginEnd="6dp"
     android:backgroundTint="@color/colorAccent"
     />
@@ -42,6 +53,7 @@ android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="decrease"
+    android:background="@drawable/mybutton"
     android:backgroundTint="@color/colorAccent"
     />
 </TableRow>

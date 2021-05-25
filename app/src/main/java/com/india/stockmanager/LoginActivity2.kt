@@ -58,7 +58,7 @@ class LoginActivity2 : AppCompatActivity() {
 
         })
         login2.setOnClickListener {
-
+            progress.visibility = View.VISIBLE
             if(TextUtils.isEmpty(loginUserName2.text.toString().trim()))
             {
                 loginUserNamel2.error = "Please enter email"
@@ -101,7 +101,6 @@ class LoginActivity2 : AppCompatActivity() {
                 progress.visibility = View.INVISIBLE
                 Toast.makeText(applicationContext,it.toString(), Toast.LENGTH_SHORT).show()
             }
-            progress.visibility = View.INVISIBLE
         }
     }
 }

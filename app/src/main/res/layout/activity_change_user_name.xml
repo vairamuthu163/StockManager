@@ -29,7 +29,7 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:hint="UserName"
-            android:padding="18dp" />
+           />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -52,7 +52,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:padding="18dp"
             android:password="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,18 +69,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/mybutton"
                 android:text="change"
-                android:textSize="17dp" />
+               />
 
             <Button
                 android:id="@+id/cancelBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/loginPasswordl2"
-                android:background="@drawable/mybutton"
                 android:text="cancel"
-                android:textSize="17dp" />
+                />
         </TableRow>
         <TableRow>
             <ProgressBar

@@ -153,8 +153,8 @@ class AddStock : AppCompatActivity() {
         val uploadImage: ImageView = findViewById(R.id.uploadImageView)
         if(requestCode == 123)
         {
-            ur = Uri.parse(file.path)
-            Log.d("Vairamuthu", ur.toString())
+           // ur = Uri.parse(file.path)
+            //Log.d("Vairamuthu", ur.toString())
             var bitmap:Bitmap = data?.extras?.get("data") as Bitmap
             val baos = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)

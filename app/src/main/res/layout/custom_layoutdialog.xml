@@ -19,8 +19,9 @@
         tools:layout_editor_absoluteX="33dp" />
 
     <TextView
+        android:gravity="center"
         android:id="@+id/selectOption"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialogTitle"
         android:layout_marginTop="20dp"
@@ -39,18 +40,16 @@
                 android:id="@+id/btnCamera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="camera"
                 android:layout_marginEnd="6dp"
                 android:backgroundTint="@color/colorAccent"
-                />
+                android:text="camera" />
 
             <Button
                 android:id="@+id/btnGallery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="gallery"
                 android:backgroundTint="@color/colorAccent"
-                  />
+                android:text="gallery" />
         </TableRow>
     </TableLayout>
 </RelativeLayout>

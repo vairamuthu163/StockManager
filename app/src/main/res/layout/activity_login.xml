@@ -28,7 +28,6 @@
             android:id="@+id/loginUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="18dp"
             android:drawablePadding="10dp"
             android:hint="Email" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -53,7 +52,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="10dp"
-            android:padding="18dp"
             android:hint="Password"
             android:password="true" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -75,8 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/forgotPass"
         android:text="Sign in"
-        android:textSize="17dp"
-        android:background="@drawable/mybutton"
+
         />
 
     <TextView
@@ -86,7 +83,7 @@
         android:layout_below="@+id/login"
         android:text="New User Signup here"
         android:textSize="18dp"
-        android:textColor="#00BCD4"
+        android:textColor="#2196F3"
         android:gravity="center"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
