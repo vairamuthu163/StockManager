@@ -85,14 +85,12 @@ class MainActivity : AppCompatActivity() {
 
                     recyclerView?.layoutManager = gridLayoutManager
                     recyclerView?.setHasFixedSize(false)
-
                     arrayList = ArrayList()
                     arrayList = setDataInList()
 
                     alphaAdaptors = AlphaAdaptors(applicationContext, arrayList!!,object :AlphaAdaptors.RecyclerViewClickListener{
                         override fun OnLongClickListener(position: Int) {
-                            Toast.makeText(applicationContext,"OnLongClick Adaptor"+position,Toast.LENGTH_SHORT).show()
-                           var builder = AlertDialog.Builder(this@MainActivity)
+                            var builder = AlertDialog.Builder(this@MainActivity)
                             builder.setTitle("Are you sure!")
                             builder.setMessage("Do you want to Delete the stock?")
                             builder.setPositiveButton("Yes", { dialogInterface: DialogInterface, i: Int ->  removevk(position)})
@@ -347,10 +345,10 @@ class MainActivity : AppCompatActivity() {
                 val mAlertDialog = imageClick.show()
                 val increaseBtn:Button =inflater.findViewById(R.id.increaseBtn)
                 val decreaseBtn:Button =inflater.findViewById(R.id.decreasebtn)
-                var title:String = arrayList!!.get(position).title
-                var Count:String = arrayList!!.get(position).count
-                var ImageURI:String = arrayList!!.get(position).imageURI
-                val userName:String = arrayList!!.get(position).userName
+                var title:String = recordList!!.get(position).title
+                var Count:String = recordList!!.get(position).count
+                var ImageURI:String = recordList!!.get(position).imageURI
+                val userName:String = recordList!!.get(position).userName
                 val input:TextInputEditText = inflater.findViewById(R.id.editIncrease)
                 val Error:TextInputLayout = inflater.findViewById(R.id.editIncreasel)
                 val root = database.getReference().child("data").child(uNameStr)
