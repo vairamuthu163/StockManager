@@ -398,6 +398,7 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(applicationContext, SettingActivity::class.java).apply {
                         putExtra("userName", userName)
                         putExtra("password", password)
+                        putExtra("stcount",arrayListfinal.size)
                     }
                     startActivity(intent)
                 } else {

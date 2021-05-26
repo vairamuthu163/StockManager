@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-
+var stcount:Int=1
 class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +31,7 @@ class SettingActivity : AppCompatActivity() {
 
         val userName:String = intent.getStringExtra("userName")!!
         val password:String = intent.getStringExtra("password")!!
+        stcount= intent.getIntExtra("stcount",1)!!
         collaboratorSettingTxt.setOnClickListener {
             val intent = Intent(applicationContext, ChangeUserName::class.java).apply {
                 putExtra("userName", userName)
@@ -70,28 +71,31 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun deleteacc(deletePass:String) {
-        var auth: FirebaseUser = FirebaseAuth.getInstance().currentUser
-        var authCred: AuthCredential =
-                EmailAuthProvider.getCredential(auth.email, deletePass)
-        auth.reauthenticate(authCred).addOnCompleteListener {
-            if (it.isSuccessful) {
-                auth.delete().addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        var root: DatabaseReference =FirebaseDatabase.getInstance().getReference()
-                        root.child("data").child(intent.getStringExtra("userName")!!).removeValue()
-                        root.child("Users").child(intent.getStringExtra("userName")!!).removeValue()
-                        val intent = Intent(applicationContext, HomeActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        intent.putExtra("EXIT", true)
-                        startActivity(intent)
+        if(stcount!=0) {
+            var auth: FirebaseUser = FirebaseAuth.getInstance().currentUser
+            var authCred: AuthCredential =
+                    EmailAuthProvider.getCredential(auth.email, deletePass)
+            auth.reauthenticate(authCred).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    auth.delete().addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            var root: DatabaseReference = FirebaseDatabase.getInstance().getReference()
+                            root.child("data").child(intent.getStringExtra("userName")!!).removeValue()
+                            root.child("Users").child(intent.getStringExtra("userName")!!).removeValue()
+                            val intent = Intent(applicationContext, HomeActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            intent.putExtra("EXIT", true)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(applicationContext, "Error Try again!!", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                    else {
-                        Toast.makeText(applicationContext,"Error Try again!!",Toast.LENGTH_SHORT).show()
-                    }
+                } else {
+                    Toast.makeText(applicationContext, "Check Network", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(applicationContext,"Check Network",Toast.LENGTH_SHORT).show()
             }
+        }else{
+            Toast.makeText(applicationContext, "Delete All Your Stocks to delete your Account", Toast.LENGTH_SHORT).show()
         }
     }
 }
