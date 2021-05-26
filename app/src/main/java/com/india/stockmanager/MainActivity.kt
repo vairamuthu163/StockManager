@@ -40,8 +40,6 @@ class MainActivity : AppCompatActivity() {
     var uNameStr:String = "null"
     var uPassStr:String = "null"
 
-
-
     override fun onBackPressed() {
         var builder = AlertDialog.Builder(this)
         builder.setTitle("Are you sure!")
@@ -80,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
                     recyclerView = findViewById(R.id.dataList)
                     gridLayoutManager =
-                            GridLayoutManager(applicationContext, 2, LinearLayoutManager.VERTICAL, false)
+                            GridLayoutManager(applicationContext, 2)   // LinearLayoutManager.VERTICAL, false)
                     val layoutManager = AutoFitGridLayoutManager(this, 500)
                     recyclerView?.layoutManager = layoutManager
                     recyclerView?.setHasFixedSize(false)
@@ -122,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                                 }.addOnFailureListener {
                                     Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_SHORT).show()
                                 }.addOnCompleteListener {
-                                    Toast.makeText(applicationContext, "Stock completed listener", Toast.LENGTH_SHORT).show()
+
                                 }
                                 mAlertDialog.dismiss()
                             }
@@ -211,8 +209,8 @@ class MainActivity : AppCompatActivity() {
             recyclerView = findViewById(R.id.dataList)
             gridLayoutManager =
                     GridLayoutManager(applicationContext, 2, LinearLayoutManager.VERTICAL, false)
-
-            recyclerView?.layoutManager = gridLayoutManager
+            val layoutManager = AutoFitGridLayoutManager(this, 500)
+            recyclerView?.layoutManager = layoutManager
             recyclerView?.setHasFixedSize(false)
 
             arrayList = ArrayList()

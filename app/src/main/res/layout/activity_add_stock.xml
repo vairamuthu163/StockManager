@@ -18,7 +18,26 @@
         android:src="@drawable/ic_baseline_add_a_photo_24"
         />
 
+    <TextView
+        android:id="@+id/noteText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="5dp"
+        android:background="@drawable/textview_bg"
+        android:drawableLeft="@drawable/ic_baseline_info"
+        android:text="Adding a Stock with the same name will replace the existing Stock Details!"
+        android:drawablePadding="10dp"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:drawableTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageView" />
+
     <TableLayout
+        android:id="@+id/tb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -27,7 +46,7 @@
         android:stretchColumns="*"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uploadImageView">
+        app:layout_constraintTop_toBottomOf="@+id/noteText">
 
         <TableRow>
 

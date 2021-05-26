@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:stretchColumns="*"
-    android:background="@drawable/corner_crop"
     android:padding="15dp"
     >
     <TableRow>
@@ -11,7 +10,7 @@
             android:layout_span="2"
             android:gravity="center"
             android:textSize="15dp"
-            android:text="Give your Quantity to Increase or Decrease your Stock Count"
+            android:text="Enter Quantity to Increase or Decrease"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             />

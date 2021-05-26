@@ -107,7 +107,7 @@ class AddStock : AppCompatActivity() {
                         val model = Model(tit, count, temp, UserName)
                         myRef.child(tit).setValue(model).addOnSuccessListener {
                             progress.visibility = View.INVISIBLE
-                            Toast.makeText(applicationContext, "Add Sucess", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Added Successfully", Toast.LENGTH_SHORT).show()
                             finish()
                         }.addOnFailureListener {
                             Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()
@@ -127,7 +127,7 @@ class AddStock : AppCompatActivity() {
                             val model = Model(tit, count, temp, UserName)
                             myRef.child(tit).setValue(model).addOnSuccessListener {
                                 progress.visibility = View.INVISIBLE
-                                Toast.makeText(applicationContext, "Add Sucess", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext, "Added Successfully", Toast.LENGTH_SHORT).show()
                                 finish()
                             }.addOnFailureListener {
                                 Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_LONG).show()

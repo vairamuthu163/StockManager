@@ -8,9 +8,44 @@
     android:gravity="center"
     android:padding="10dp"
     tools:context=".LoginActivity">
+    <TextView
+        android:id="@+id/noteTextChangeUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@drawable/textview_bg"
+        android:drawableLeft="@drawable/ic_baseline_info"
+        android:text="Set the password and share this username and password with your collaborater for collaboration"
+        android:drawablePadding="10dp"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:drawableTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageView" />
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/noteTextChangeUsername"
+        android:id="@+id/noteTextChange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@drawable/textview_bg"
+        android:drawableLeft="@drawable/ic_baseline_info"
+        android:text="Change this password to revoke access to all your collaborater"
+        android:drawablePadding="10dp"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:drawableTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageView" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginUserNamel2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/noteTextChange"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

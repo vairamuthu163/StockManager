@@ -8,12 +8,14 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         />
     <item android:title="Settings"
+        android:icon="@drawable/ic_baseline_settings"
         android:id="@+id/item2"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom"
         />
     <item android:title="logout"
+        android:icon="@drawable/ic_baseline_logout"
         android:id="@+id/item1"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom"
         />
 
 </menu>
